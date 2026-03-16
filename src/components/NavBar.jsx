@@ -29,7 +29,7 @@ const Navbar = () => {
       <div className="container mx-auto md:p-4 p-2 flex justify-between items-center">
         <Link to="/" className="text-xl font-bold">Claudia</Link>
 
-        <div className="flex gap-4 items-center">
+        <div className="flex md:gap-4 gap-3 items-center">
           <Link to="/" className={linkClass("/")}>Home</Link>
           <Link to="/packs" className={linkClass("/packs")}>Packs</Link>
 

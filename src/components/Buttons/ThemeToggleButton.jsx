@@ -15,7 +15,7 @@ const ThemeToggleButton = () => {
       />
 
       {/* Fondo de la pastilla */}
-      <span className="absolute inset-0 bg-primary dark:bg-stone-500 rounded-full transition-colors duration-200 ease-in-out peer-checked:bg-stone-700"></span>
+      <span className="absolute inset-0 bg-primary dark:bg-stone-500 hover:dark:bg-stone-600 hover:bg-primary/80 rounded-full transition-colors duration-200 ease-in-out peer-checked:bg-stone-700"></span>
 
       {/* Slider */}
       <span
