@@ -6,11 +6,11 @@ const CartDrawer = ({ onClose }) => {
   const { cartItems, cartTotal } = useCart()
 
   return (
-    <div className="fixed top-0 right-0 h-full w-2/5 shadow-lg z-50 transform transition-transform">
-      <div className="flex justify-between items-center p-4 border-b">
+    <div className="fixed bg-stone-900 top-0 right-0 h-full md:w-2/5 w-full shadow-lg z-50 transform transition-transform">
+      <div className="flex justify-between items-center p-4 border-b border-stone-800">
         <h2 className="text-xl font-bold">Carrito</h2>
         <button onClick={onClose}>
-          <FaTimes className="h-6 w-6 text-gray-700" />
+          <FaTimes className="h-6 w-6 text-gray-200 cursor-pointer hover:text-gray-400" />
         </button>
       </div>
 
