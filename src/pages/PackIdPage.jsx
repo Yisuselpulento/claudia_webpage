@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getPackByIdFetching } from "../services/packsFetching"
+import { usePacks } from "../context/PacksContext"
+import { useCart } from "../context/CartContext"
 import toast from "react-hot-toast"
 
 const PackIdPage = () => {
   const { id } = useParams()
+  const { getPackById, addPack } = usePacks()
+  const { addToCart } = useCart()
   const [pack, setPack] = useState(null)
   const [loading, setLoading] = useState(false)
 
   const fetchPack = async () => {
     setLoading(true)
+    const cachedPack = getPackById(id)
+    if (cachedPack) {
+      setPack(cachedPack)
+      setLoading(false)
+      return
+    }
     const res = await getPackByIdFetching(id)
     setLoading(false)
     if (!res.success) return toast.error(res.message)
     setPack(res.data)
+    addPack(res.data)
   }
 
   useEffect(() => {
@@ -46,8 +57,11 @@ const PackIdPage = () => {
         </p>
       )}
 
-      <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
-        Comprar
+      <button
+        className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+        onClick={() => addToCart(pack)}
+      >
+        Agregar al carrito
       </button>
     </div>
   )

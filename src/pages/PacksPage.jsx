@@ -1,33 +1,21 @@
-import React, { useEffect, useState } from "react"
-import { getPacksFetching, deletePackFetching } from "../services/packsFetching"
-import PackCard from "../components/Cards/PackCard"
-import { useAuth } from "../context/AuthContext"
-import toast from "react-hot-toast"
+import React from "react";
+import PackCard from "../components/Cards/PackCard";
+import { useAuth } from "../context/AuthContext";
+import { usePacks } from "../context/PacksContext";
+import { deletePackFetching } from "../services/packsFetching";
+import toast from "react-hot-toast";
 
 const PacksPage = () => {
-  const [packs, setPacks] = useState([])
-  const [loading, setLoading] = useState(false)
-  const { admin } = useAuth()
-
-  const fetchPacks = async () => {
-    setLoading(true)
-    const res = await getPacksFetching()
-    setLoading(false)
-    if (res.success) setPacks(res.data)
-    else toast.error(res.message)
-  }
+  const { packs, loading, removePack } = usePacks();
+  const { admin } = useAuth();
 
   const handleDelete = async (packId) => {
-    if (!window.confirm("¿Estás seguro de eliminar este pack?")) return
-    const res = await deletePackFetching(packId)
-    if (!res.success) return toast.error(res.message)
-    toast.success("Pack eliminado")
-    setPacks(packs.filter(p => p._id !== packId))
-  }
-
-  useEffect(() => {
-    fetchPacks()
-  }, [])
+    if (!window.confirm("¿Estás seguro de eliminar este pack?")) return;
+    const res = await deletePackFetching(packId);
+    if (!res.success) return toast.error(res.message);
+    toast.success("Pack eliminado");
+    removePack(packId);
+  };
 
   return (
     <div className="max-w-6xl mx-auto py-8">
@@ -48,7 +36,7 @@ const PacksPage = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default PacksPage
+export default PacksPage;
