@@ -13,6 +13,7 @@ import PackIdPage from "./pages/PackIdPage"
 
 import { PacksProvider } from "./context/PacksContext"
 import { CartProvider } from "./context/CartContext" // <-- importa el nuevo context
+import NotFoundPage from "./pages/NotFoundPage"
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
