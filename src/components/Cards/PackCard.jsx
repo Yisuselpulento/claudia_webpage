@@ -2,12 +2,12 @@ import { Link } from "react-router-dom"
 
 const PackCard = ({ pack, onDelete, isAdmin }) => {
   return (
-    <div className="border dark:border-stone-800 border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+    <div className="border dark:border-stone-800 border-gray-200 rounded-md overflow-hidden shadow hover:shadow-lg transition bg-white dark:bg-stone-900">
       <Link to={`/packs/${pack._id}`}>
         <img
           src={pack.coverImage.url}
           alt={pack.title}
-          className="w-full h-100 object-cover"
+          className="w-full h-80 object-cover"
         />
       </Link>
 

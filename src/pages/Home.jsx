@@ -4,6 +4,7 @@ import PackCard from "../components/Cards/PackCard"
 import { useAuth } from "../context/AuthContext"
 import { usePacks } from "../context/PacksContext"
 import { deletePackFetching } from "../services/packsFetching"
+import { Link } from "react-router-dom"
 import toast from "react-hot-toast"
 
 const Home = () => {
@@ -36,8 +37,8 @@ const Home = () => {
       </div>
 
       {/* Sección de Packs */}
-      <div className="container mx-auto px-4 py-8">
-        <h2 className="text-2xl font-semibold mb-10 text-center">Alguna de mis sesiones</h2>
+      <section className="mx-auto px-4 py-8 dark:bg-black bg-gray-100 flex items-center flex-col">
+        <h2 className="text-3xl font-semibold mb-10 text-center p-4">Alguna de mis sesiones</h2>
 
         {loading ? (
           <p className="text-center">Cargando...</p>
@@ -53,7 +54,15 @@ const Home = () => {
             ))}
           </div>
         )}
-      </div>
+      </section>
+      <section className="flex justify-center py-10">
+  <Link
+    to="/packs"
+    className="px-6 py-3 bg-primary text-white rounded-full hover:opacity-90 transition"
+  >
+    Ver toda la tienda
+  </Link>
+</section>
     </div>
   )
 }
