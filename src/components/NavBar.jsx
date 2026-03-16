@@ -36,8 +36,8 @@ const Navbar = () => {
 
     {/* Links y botones */}
     <div className="flex md:gap-4 gap-3 items-center md:px-2 px-2 md:py-1">
-      <Link to="/" className={linkClass("/")}>Home</Link>
-      <Link to="/packs" className={linkClass("/packs")}>Packs</Link>
+      <Link to="/" className={linkClass("/")}>Inicio</Link>
+      <Link to="/packs" className={linkClass("/packs")}>Tienda</Link>
 
       {/* Carrito */}
       <button className="relative" onClick={() => setIsCartOpen(true)}>

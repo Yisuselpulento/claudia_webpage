@@ -1,21 +1,21 @@
 const HomeHero = () => {
   return (
-    <div className="w-full h-screen relative">
+    <div className="w-full md:h-[400px] h-[400px] relative">
       {/* Banner */}
       <img
         src="desktop_wallpaper.jpg"
         alt="Banner Desktop"
-        className="hidden sm:block w-full h-[450px] object-cover"
+        className="hidden sm:block w-full h-full object-cover"
       />
       <img
         src="movil_wallpaper.jpg"
         alt="Banner Mobile"
-        className="block sm:hidden w-full h-[350px] object-cover"
+        className="block sm:hidden w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-black/20"></div>
 
       {/* Contenido centrado */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+      <div className="absolute top-110  inset-0 flex flex-col items-center justify-center text-center px-4">
         {/* Imagen de perfil */}
         <img
           src="movil_wallpaper.jpg"
@@ -24,8 +24,8 @@ const HomeHero = () => {
         />
 
         {/* Texto */}
-        <h1 className="text-white text-2xl font-bold">Hola, soy Clau</h1>
-        <p className="text-white text-lg mt-1">Bienvenido a mi página</p>
+        <h1 className="text-2xl font-bold">Hola, soy Clau</h1>
+        <p className=" text-lg mt-1">Bienvenido a mi página</p>
       </div>
     </div>
   )
