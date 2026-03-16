@@ -31,15 +31,15 @@ const Navbar = () => {
             )}
           </button>
 
-          {admin && (
+      
             <Link
-              to="/admin/dashboard"
+              to="/admin"
               className="flex items-center gap-1 bg-gray-800 text-white px-3 py-1 rounded hover:bg-gray-900"
             >
               <FaUserCircle className="h-5 w-5" />
               Admin
             </Link>
-          )}
+       
         </div>
       </div>
 
