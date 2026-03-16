@@ -13,7 +13,6 @@ const PackCard = ({ pack, onDelete, isAdmin }) => {
 
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">{pack.title}</h2>
-        <p className="text-gray-600 mb-2 dark:text-gray-400">{pack.description}</p>
         <p className="font-semibold mb-2">Precio: ${pack.price}</p>
         {pack.offer?.isActive && (
           <p className="text-green-600 font-semibold">

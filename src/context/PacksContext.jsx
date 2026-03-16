@@ -28,6 +28,22 @@ export const PacksProvider = ({ children }) => {
   // Obtener pack del contexto
   const getPackById = (id) => packs.find(p => p._id === id) || null;
 
+  const refreshPack = async (id) => {
+  try {
+    const res = await getPackByIdFetching(id)
+    if (!res.success) {
+      toast.error(res.message)
+      return null
+    }
+    // Reemplaza o agrega el pack en el contexto
+    updatePack(res.data)
+    return res.data
+  } catch (error) {
+    toast.error("Error al refrescar el pack")
+    return null
+  }
+}
+
   // Obtener pack del contexto o hacer fetch si no existe
   const getPackOrFetch = async (id) => {
     const cached = getPackById(id);
@@ -62,7 +78,8 @@ export const PacksProvider = ({ children }) => {
         updatePack,
         removePack,
         getPackById,
-        getPackOrFetch, // <-- útil para PackIdPage
+        getPackOrFetch,
+        refreshPack // <-- útil para PackIdPage
       }}
     >
       {children}
