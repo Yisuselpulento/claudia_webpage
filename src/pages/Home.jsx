@@ -1,24 +1,19 @@
 import AdminDashboardButton from "../components/Buttons/AdminDashboardButton"
+import HomeHero from "../components/HomeHero"
 
 const Home = () => {
   return (
-    <div className="relative flex flex-col items-center">
-      {/* Banner altura igual que el MainLayout */}
-      <div className="w-full md:h-[160px]"></div>
+    <div className="relative w-full">
+      <HomeHero />
 
-      {/* Imagen de perfil flotante */}
-      <div className="relative -mt-40 sm:-mt-40"> 
-        {/* Ajusta -mt-32/-mt-40 para que quede mitad sobre banner */}
-        <img
-          src="movil_wallpaper.jpg"
-          alt="Profile"
-          className="w-30 h-30 sm:w-56 md:h-44 md:w-44 rounded-full border-4 border-white shadow-lg object-cover"
-        />
-      </div>
+      <div className="container mx-auto px-4 py-8 text-center">
+        <h2 className="text-2xl font-semibold mb-4">
+          Descubre nuestros packs y ofertas exclusivas
+        </h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-6">
+          Explora nuestra colección cuidadosamente seleccionada y encuentra lo que necesitas.
+        </p>
 
-      {/* Texto y botón debajo */}
-      <div className="mt-6 text-center">
-        <h1 className="text-3xl font-bold mb-4">Bienvenidos a mi página</h1>
         <AdminDashboardButton />
       </div>
     </div>
