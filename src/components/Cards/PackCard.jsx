@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const PackCard = ({ pack, onDelete, isAdmin }) => {
   return (
-    <div className="border border-stone-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+    <div className="border dark:border-stone-800 border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-lg transition">
       <Link to={`/packs/${pack._id}`}>
         <img
           src={pack.coverImage.url}
@@ -13,7 +13,7 @@ const PackCard = ({ pack, onDelete, isAdmin }) => {
 
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">{pack.title}</h2>
-        <p className="text-gray-600 mb-2">{pack.description}</p>
+        <p className="text-gray-600 mb-2 dark:text-gray-400">{pack.description}</p>
         <p className="font-semibold mb-2">Precio: ${pack.price}</p>
         {pack.offer?.isActive && (
           <p className="text-green-600 font-semibold">
@@ -21,7 +21,7 @@ const PackCard = ({ pack, onDelete, isAdmin }) => {
           </p>
         )}
         {pack.tags.length > 0 && (
-          <p className="text-sm text-gray-500 mb-2">
+          <p className="text-sm dark:text-gray-500 text-gray-600 mb-2">
             Tags: {pack.tags.join(", ")}
           </p>
         )}

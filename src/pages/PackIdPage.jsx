@@ -44,7 +44,7 @@ const PackIdPage = () => {
         className="w-full h-96 object-cover mb-4 rounded"
       />
 
-      <p className="mb-2">{pack.description}</p>
+      <p className="mb-2 dark:text-gray-400">{pack.description}</p>
       <p className="font-semibold mb-2">Precio: ${pack.price}</p>
       {pack.offer?.isActive && (
         <p className="text-green-600 font-semibold mb-2">
@@ -52,7 +52,7 @@ const PackIdPage = () => {
         </p>
       )}
       {pack.tags.length > 0 && (
-        <p className="text-sm text-gray-500 mb-2">
+        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
           Tags: {pack.tags.join(", ")}
         </p>
       )}

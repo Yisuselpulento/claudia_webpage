@@ -14,9 +14,11 @@ import PackIdPage from "./pages/PackIdPage"
 import { PacksProvider } from "./context/PacksContext"
 import { CartProvider } from "./context/CartContext" // <-- importa el nuevo context
 import NotFoundPage from "./pages/NotFoundPage"
+import { ThemeProvider } from "./context/ThemeContext"
 
 function App() {
   return (
+    <ThemeProvider>
     <PacksProvider>  {/* packs context */}
       <CartProvider>  {/* carrito context */}
         <BrowserRouter>
@@ -58,6 +60,7 @@ function App() {
         </BrowserRouter>
       </CartProvider>
     </PacksProvider>
+    </ThemeProvider>
   )
 }
 
