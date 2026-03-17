@@ -20,3 +20,8 @@ export const createPaymentPreferenceFetching = async (items) =>
   handleRequest(
     axiosInstance.post("/api/payment/create-preference", { items })
   );
+
+  export const verifyPaymentFetching = async (paymentId) =>
+  handleRequest(
+    axiosInstance.get(`/api/payment/verify/${paymentId}`)
+  );

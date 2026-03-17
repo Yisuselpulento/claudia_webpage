@@ -14,7 +14,7 @@ const MainLayout = () => {
       <Navbar />
       <main
         className={`flex-1 ${
-          isHome ? "" : "container mx-auto px-2 py-13"
+          isHome ? "" : "container mx-auto px-2 justify-center  flex flex-col items-center py-30"
         }`}
       >
         <Outlet />

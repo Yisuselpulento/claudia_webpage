@@ -11,7 +11,7 @@ const CreatePack = () => {
   const [tags,setTags] = useState("")
 
   const [coverImage,setCoverImage] = useState(null)
-  const [images,setImages] = useState([])
+  const [zipFile,setZipFile] = useState(null)
 
   const [loading,setLoading] = useState(false)
 
@@ -24,8 +24,8 @@ const CreatePack = () => {
       return
     }
 
-    if(images.length === 0){
-      toast.error("Debes subir al menos una imagen")
+    if(!zipFile){
+      toast.error("Debes subir el ZIP del pack")
       return
     }
 
@@ -36,17 +36,11 @@ const CreatePack = () => {
     formData.append("description",description)
     formData.append("price",price)
 
-    /* tags separados por coma */
     const tagsArray = tags.split(",").map(tag => tag.trim())
-formData.append("tags", JSON.stringify(tagsArray))
+    formData.append("tags", JSON.stringify(tagsArray))
 
-    /* portada */
     formData.append("coverImage",coverImage)
-
-    /* imágenes */
-    for(const img of images){
-      formData.append("images",img)
-    }
+    formData.append("zipFile",zipFile)
 
     setLoading(true)
 
@@ -67,7 +61,8 @@ formData.append("tags", JSON.stringify(tagsArray))
     setPrice("")
     setTags("")
     setCoverImage(null)
-    setImages([])
+    setZipFile(null)
+
   }
 
   return (
@@ -133,16 +128,15 @@ formData.append("tags", JSON.stringify(tagsArray))
           />
         </div>
 
-        {/* imágenes */}
+        {/* ZIP */}
 
         <div>
-          <label className="block mb-1">Images</label>
+          <label className="block mb-1">ZIP del pack</label>
 
           <input
             type="file"
-            accept="image/*"
-            multiple
-            onChange={(e)=>setImages([...e.target.files])}
+            accept=".zip"
+            onChange={(e)=>setZipFile(e.target.files[0])}
           />
         </div>
 

@@ -16,6 +16,7 @@ import { CartProvider } from "./context/CartContext" // <-- importa el nuevo con
 import NotFoundPage from "./pages/NotFoundPage"
 import { ThemeProvider } from "./context/ThemeContext"
 import Checkout from "./pages/Checkout"
+import Success from "./pages/Success"
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               <Route path="/packs" element={<PacksPage />} />
               <Route path="/packs/:id" element={<PackIdPage />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/success" element={<Success />} />
 
               <Route
                 path="/admin"
