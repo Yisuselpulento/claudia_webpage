@@ -50,22 +50,6 @@ const Navbar = () => {
       </button>
 
       <ThemeToggleButton />
-
-      {admin && (
-        <Link
-          to="/admin"
-          className={`flex items-center gap-1 px-3 py-1 rounded-full hover:bg-gray-900
-            ${location.pathname === "/admin"
-              ? theme === "dark"
-                ? "bg-primary-checked text-white"
-                : "bg-blue-600 text-white"
-              : "bg-gray-800 text-white"
-          }`}
-        >
-          <FaUserCircle className="h-5 w-5" />
-          Admin
-        </Link>
-      )}
     </div>
   </div>
 
