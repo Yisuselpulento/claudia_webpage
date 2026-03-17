@@ -15,6 +15,7 @@ import { PacksProvider } from "./context/PacksContext"
 import { CartProvider } from "./context/CartContext" // <-- importa el nuevo context
 import NotFoundPage from "./pages/NotFoundPage"
 import { ThemeProvider } from "./context/ThemeContext"
+import Checkout from "./pages/Checkout"
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/packs" element={<PacksPage />} />
               <Route path="/packs/:id" element={<PackIdPage />} />
+              <Route path="/checkout" element={<Checkout />} />
 
               <Route
                 path="/admin"
