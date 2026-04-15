@@ -3,12 +3,12 @@ const HomeHero = () => {
     <div className="w-full md:h-[400px] h-[400px] relative">
       {/* Banner */}
       <img
-        src="desktop_wallpaper.jpg"
+        src="movil_wallpaper.png"
         alt="Banner Desktop"
         className="hidden sm:block w-full h-full object-cover"
       />
       <img
-        src="movil_wallpaper.jpg"
+        src="movil_wallpaper.png"
         alt="Banner Mobile"
         className="block sm:hidden w-full h-full object-cover"
       />
@@ -18,7 +18,7 @@ const HomeHero = () => {
       <div className="absolute top-110  inset-0 flex flex-col items-center justify-center text-center px-4">
         {/* Imagen de perfil */}
         <img
-          src="movil_wallpaper.jpg"
+          src="profile.png"
           alt="Profile"
           className="w-40 h-40 sm:w-56 sm:h-56 rounded-full border-4 border-white shadow-lg object-cover mb-4"
         />
