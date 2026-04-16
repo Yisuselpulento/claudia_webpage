@@ -1,3 +1,5 @@
+import OnlineStatus from "./OnlineStatus"
+
 const HomeHero = () => {
   return (
     <div className="w-full md:h-[400px] h-[400px] relative">
@@ -24,21 +26,25 @@ const HomeHero = () => {
         />
 
         {/* Texto */}
-        <h1 className="text-2xl font-bold">Hola, soy Isidora</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-2xl font-bold">Hola, soy Isidora</h1>
+          <OnlineStatus />
+        </div>
+
         <div>
   <p className="text-lg mt-1">
-    immm 18 ☺️ dfg f gfg fdgfgfdg fdg fd gfg f
+    Bienvenido a mi perfil. Si te gusta mi contenido, te invito a suscribirte!
   </p>
 
   <p>
-    💖 fdg fdg dffdg <br/>
-    💖 fdg fdg dfgfd fd <br/>
-    💖 fdg fdgfdg ff <br/>
-    💖 fdg fdg fdgfdgfdg
+    💖 Acceso al muro principal <br/>
+    💖 Contenido en solitario, películas para mayores de 18 años<br/>
+    💖 Publicaciones diarias <br/>
+    💖 Contenido explícito disponible
   </p>
 
   <p>
-    also feel free to dm me 🥰 fdg fdgfdgfdg fdg fdgfdg sfdgd
+    También puedes enviarme un mensaje directo 🥰 sinceramente, estaría abierta a una conexión más profunda también…
   </p>
 </div>
       </div>
