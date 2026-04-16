@@ -25,15 +25,22 @@ const HomeHero = () => {
 
         {/* Texto */}
         <h1 className="text-2xl font-bold">Hola, soy Isidora</h1>
-        <p className=" text-lg mt-1">immm 18 ☺️ just a highschool senior with a dumpyyy that loves riding horses and having fun💙 im super excited to start this because ive never really shown this side of me before!! here’s all of what you’ll get:
+        <div>
+  <p className="text-lg mt-1">
+    immm 18 ☺️ dfg f gfg fdgfgfdg fdg fd gfg f
+  </p>
 
-💖access to the main wall
-💖solo content, 18+ films
-💖daily posts
-💖nude content available
+  <p>
+    💖 fdg fdg dffdg <br/>
+    💖 fdg fdg dfgfd fd <br/>
+    💖 fdg fdgfdg ff <br/>
+    💖 fdg fdg fdgfdgfdg
+  </p>
 
-also feel free to dm me 🥰 honestly would be open to a deeper connection too…</p>
-        
+  <p>
+    also feel free to dm me 🥰 fdg fdgfdgfdg fdg fdgfdg sfdgd
+  </p>
+</div>
       </div>
     </div>
   )
