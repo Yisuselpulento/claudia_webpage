@@ -102,7 +102,7 @@ const CreatePack = () => {
 
         <input
           type="number"
-          placeholder="Precio"
+          placeholder="Precio (USD)"
           className="w-full border p-2 rounded"
           value={price}
           onChange={(e)=>setPrice(e.target.value)}

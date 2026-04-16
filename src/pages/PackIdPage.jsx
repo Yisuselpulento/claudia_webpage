@@ -36,10 +36,10 @@ const PackIdPage = () => {
       />
 
       <p className="mb-2 dark:text-gray-400">{pack.description}</p>
-      <p className="font-semibold mb-2">Precio: ${pack.price}</p>
+      <p className="font-semibold mb-2">Precio: ${pack.price} USD</p>
       {pack.offer?.isActive && (
         <p className="text-green-600 font-semibold mb-2">
-          Oferta: ${pack.offer.price}
+          Oferta: ${pack.offer.price} USD
         </p>
       )}
       {pack.tags.length > 0 && (

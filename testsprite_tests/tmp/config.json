@@ -1,0 +1,20 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:5173",
+  "loginUser": "soyclauugomez@gmail.com",
+  "loginPassword": "cuentaFalsa2003",
+  "executionArgs": {
+    "projectName": "frontend",
+    "projectPath": "C:\\Users\\Monsster\\Desktop\\ClaudiaGomez\\frontend",
+    "testIds": [],
+    "additionalInstruction": "",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user--4XARNtHAGtbuYegBa0z3beXP-XxttFjeEnG5391HPL7lFoUl3abIkkwYtFqphpvaGmSfDqfO_xTtipBPtWujBwfL6lT5ESYobvJiQdYlC49b6_PTCBFIOYVA57b3klFyWU"
+    }
+  },
+  "serverPort": 59079,
+  "proxy": "http://0f033822-ae23-4ac4-98d9-c23625d38bf2:668O4vsxfX04F0FfmAhymzG4bTV0Umjl@tun.testsprite.com:8080"
+}

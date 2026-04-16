@@ -17,7 +17,7 @@ const ItemCard = ({ pack }) => {
       {/* Info */}
       <div className="flex-1">
         <h3 className="font-semibold">{pack.title}</h3>
-        <p className="dark:text-gray-300 text-gray-500 text-sm">Precio: ${price}</p>
+        <p className="dark:text-gray-300 text-gray-500 text-sm">Precio: ${price} USD</p>
       </div>
 
       {/* Botón eliminar */}

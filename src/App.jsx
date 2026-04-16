@@ -8,6 +8,7 @@ import Home from "./pages/Home"
 import AdminLogin from "./pages/Admin/AdminLogin"
 import AdminDashboard from "./pages/Admin/AdminDashboard"
 import CreatePack from "./pages/Admin/CreatePack"
+import SalesAdmin from "./pages/Admin/SalesAdmin"
 import PacksPage from "./pages/PacksPage"
 import PackIdPage from "./pages/PackIdPage"
 
@@ -55,6 +56,15 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <CreatePack />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/admin/sales"
+                element={
+                  <ProtectedRoute>
+                    <SalesAdmin />
                   </ProtectedRoute>
                 }
               />

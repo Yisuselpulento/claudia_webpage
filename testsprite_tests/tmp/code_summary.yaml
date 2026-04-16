@@ -1,0 +1,152 @@
+version: "2"
+type: frontend
+tech_stack:
+  - React 19
+  - Vite
+  - React Router 7
+  - Tailwind CSS
+routes:
+  - path: /
+    file: src/pages/Home.jsx
+    auth_required: false
+    description: Home page with hero and pack listing
+  - path: /packs
+    file: src/pages/PacksPage.jsx
+    auth_required: false
+    description: Display all available packs
+  - path: /packs/:id
+    file: src/pages/PackIdPage.jsx
+    auth_required: false
+    description: Show single pack details and buy button
+  - path: /checkout
+    file: src/pages/Checkout.jsx
+    auth_required: false
+    description: Cart checkout with payment method selection
+  - path: /success
+    file: src/pages/Success.jsx
+    auth_required: false
+    description: Post-purchase success page with download tokens
+  - path: /admin
+    file: src/pages/Admin/AdminLogin.jsx
+    auth_required: false
+    description: Admin login page
+  - path: /admin/dashboard
+    file: src/pages/Admin/AdminDashboard.jsx
+    auth_required: true
+    description: Admin dashboard with sidebar
+  - path: /admin/create-pack
+    file: src/pages/Admin/CreatePack.jsx
+    auth_required: true
+    description: Create new pack form
+  - path: /admin/sales
+    file: src/pages/Admin/SalesAdmin.jsx
+    auth_required: true
+    description: Sales listing with pagination
+features:
+  - name: Home Page
+    description: Display hero section and available packs for sale
+    files:
+      - src/pages/Home.jsx
+      - src/components/HomeHero.jsx
+      - src/components/Cards/PackCard.jsx
+      - src/context/PacksContext.jsx
+    entry_route: /
+    user_interactions:
+      - View hero section on page load
+      - Click pack card to view details
+      - Navigate to /packs page
+    api_calls:
+      - method: GET
+        endpoint: /api/packs
+    auth_required: false
+  - name: Pack Details
+    description: View pack details and add to cart
+    files:
+      - src/pages/PackIdPage.jsx
+      - src/components/Cards/ItemCard.jsx
+      - src/context/CartContext.jsx
+    entry_route: /packs/:id
+    user_interactions:
+      - View pack information and images
+      - Click Add to Cart button
+      - Open cart drawer
+    api_calls:
+      - method: GET
+        endpoint: /api/packs/:id
+    auth_required: false
+  - name: Cart and Checkout
+    description: Review cart and complete purchase
+    files:
+      - src/pages/Checkout.jsx
+      - src/context/CartContext.jsx
+      - src/components/CartDrawer.jsx
+    entry_route: /checkout
+    user_interactions:
+      - Select payment method (MercadoPago or PayPal)
+      - Review cart items
+      - Click pay button to initiate payment
+    api_calls:
+      - method: POST
+        endpoint: /api/payment/create-preference (MercadoPago)
+      - method: POST
+        endpoint: /api/payment/paypal/create-order (PayPal)
+    auth_required: false
+  - name: Admin Login
+    description: Admin authentication
+    files:
+      - src/pages/Admin/AdminLogin.jsx
+      - src/context/AuthContext.jsx
+    entry_route: /admin
+    user_interactions:
+      - Fill email field
+      - Fill password field
+      - Click login button
+    api_calls:
+      - method: POST
+        endpoint: /api/admin/login
+    auth_required: false
+  - name: Admin Dashboard
+    description: Admin dashboard with sidebar navigation
+    files:
+      - src/pages/Admin/AdminDashboard.jsx
+      - src/components/ProtectedRoute.jsx
+      - src/context/AuthContext.jsx
+    entry_route: /admin/dashboard
+    user_interactions:
+      - View sidebar navigation
+      - Navigate to create pack
+      - Navigate to sales
+      - Logout
+    api_calls: []
+    auth_required: true
+  - name: Create Pack
+    description: Create new pack form
+    files:
+      - src/pages/Admin/CreatePack.jsx
+      - src/context/AuthContext.jsx
+    entry_route: /admin/create-pack
+    user_interactions:
+      - Fill pack name
+      - Set price
+      - Upload images
+      - Add items
+      - Click create button
+    api_calls:
+      - method: POST
+        endpoint: /api/packs
+    auth_required: true
+  - name: Sales Admin
+    description: View sales with pagination
+    files:
+      - src/pages/Admin/SalesAdmin.jsx
+      - src/context/AuthContext.jsx
+    entry_route: /admin/sales
+    user_interactions:
+      - View sales table
+      - Navigate pages
+      - Search sales
+    api_calls:
+      - method: GET
+        endpoint: /api/admin/sales
+    auth_required: true
+known_limitations: []

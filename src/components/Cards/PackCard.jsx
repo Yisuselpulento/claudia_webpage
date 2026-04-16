@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom"
+import { useCart } from "../../context/CartContext"
 
 const PackCard = ({ pack, onDelete, isAdmin }) => {
+  const { addToCart, cartItems } = useCart()
+  const inCart = cartItems.some(item => item._id === pack._id)
+
+  const handleAddToCart = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addToCart(pack)
+  }
+
   return (
     <div className="border dark:border-stone-800 border-gray-200 rounded-md overflow-hidden shadow hover:shadow-lg transition bg-white dark:bg-stone-900">
       <Link to={`/packs/${pack._id}`}>
@@ -13,10 +23,10 @@ const PackCard = ({ pack, onDelete, isAdmin }) => {
 
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">{pack.title}</h2>
-        <p className="font-semibold mb-2">Precio: ${pack.price}</p>
+        <p className="font-semibold mb-2">Precio: ${pack.price} USD</p>
         {pack.offer?.isActive && (
           <p className="text-green-600 font-semibold">
-            Oferta: ${pack.offer.price}
+            Oferta: ${pack.offer.price} USD
           </p>
         )}
         {pack.tags.length > 0 && (
@@ -24,6 +34,18 @@ const PackCard = ({ pack, onDelete, isAdmin }) => {
             Tags: {pack.tags.join(", ")}
           </p>
         )}
+
+        <button
+          onClick={handleAddToCart}
+          disabled={inCart}
+          className={`w-full mt-2 py-2 rounded transition cursor-pointer ${
+            inCart
+              ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+              : "bg-primary text-white hover:bg-primary/90"
+          }`}
+        >
+          {inCart ? "En Carrito" : "Agregar al Carrito"}
+        </button>
 
         <div className="flex gap-2 mt-2">
           {isAdmin && (

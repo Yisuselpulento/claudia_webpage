@@ -1,0 +1,682 @@
+[
+  {
+    "id": "TC001",
+    "title": "Admin can log in and reach dashboard",
+    "description": "Verifies that an admin can submit valid credentials on the admin login page and land on the dashboard with navigation available.",
+    "category": "Admin Login",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the admin dashboard and sidebar navigation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Browse pack details from listing and add to cart",
+    "description": "Verifies a guest can open a pack from the listing, review details, add it to the cart, and see it in the cart drawer.",
+    "category": "Pack Details (Browse and Add to Cart)",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /packs"
+      },
+      {
+        "type": "action",
+        "description": "Click a pack from the listing to view its details"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the pack details section"
+      },
+      {
+        "type": "action",
+        "description": "Add the pack to the cart"
+      },
+      {
+        "type": "action",
+        "description": "Open the cart drawer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the cart drawer shows the added pack as a cart item"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Start checkout from cart drawer and choose MercadoPago",
+    "description": "Verifies a guest can move from the cart drawer to checkout, select MercadoPago as the payment method, and initiate the pay action without client-side validation blocking.",
+    "category": "Cart and Checkout",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /packs"
+      },
+      {
+        "type": "action",
+        "description": "Add a pack to the cart directly from the listing"
+      },
+      {
+        "type": "action",
+        "description": "Open the cart drawer"
+      },
+      {
+        "type": "action",
+        "description": "Proceed to checkout from the cart drawer"
+      },
+      {
+        "type": "action",
+        "description": "Select MercadoPago as the payment method"
+      },
+      {
+        "type": "action",
+        "description": "Submit the pay action"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the checkout flow proceeds past the pay initiation step without showing a form validation error"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Discover packs from home and browse full catalog",
+    "description": "Verifies a guest can land on the home page, see pack discovery content, navigate to the packs catalog, and see the full pack list rendered.",
+    "category": "Home Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the pack listing section"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation control to view all packs"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the packs catalog page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a list of available packs is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Download purchased pack from success page",
+    "description": "Verifies that a buyer can open the success page, see available downloads with expiry info, and start a token-based download from a link.",
+    "category": "Post-purchase Success and Downloads",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /success"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the success page content to load"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the downloads section"
+      },
+      {
+        "type": "action",
+        "description": "Click a download link for a purchased pack"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a download is initiated or the browser navigates to a download endpoint"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Add a pack to cart directly from the listing and review in cart drawer",
+    "description": "Verifies a guest can add a pack to the cart from the packs listing page and confirm the cart drawer shows the correct cart contents.",
+    "category": "Pack Details (Browse and Add to Cart)",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /packs"
+      },
+      {
+        "type": "action",
+        "description": "Add a pack to the cart directly from the listing"
+      },
+      {
+        "type": "action",
+        "description": "Open the cart drawer"
+      },
+      {
+        "type": "action",
+        "description": "Review the cart items list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the cart drawer displays at least one cart item"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Admin creates a new pack successfully",
+    "description": "Verifies an admin can create a new pack from the create-pack page and sees a visible success confirmation after submission.",
+    "category": "Create Pack",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to create a pack"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Autotest Pack\" into the pack name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid price into the price field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the create pack form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Admin can navigate dashboard to create-pack and sales and back",
+    "description": "Verifies that an authenticated admin can use the dashboard sidebar to navigate to create-pack and sales pages and return to the dashboard.",
+    "category": "Admin Dashboard",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation item to go to create pack"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation item to go back to the dashboard"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation item to go to sales"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the sales list view is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Admin can create a pack and then find it in the public packs listing",
+    "description": "Verifies a newly created pack appears in the public packs listing after creation, indicating it is published and visible to buyers.",
+    "category": "Create Pack",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to create a pack"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Autotest Pack Public\" into the pack name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid price into the price field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the create pack form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to return to the public packs page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the pack named \"Autotest Pack Public\" is visible in the packs listing"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Cart persists while navigating between catalog and details",
+    "description": "Verifies a guest’s cart contents remain visible after navigating from the catalog to a pack details page and reopening the cart drawer.",
+    "category": "Pack Details (Browse and Add to Cart)",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /packs"
+      },
+      {
+        "type": "action",
+        "description": "Add a pack to the cart directly from the listing"
+      },
+      {
+        "type": "action",
+        "description": "Click a pack from the listing to view its details"
+      },
+      {
+        "type": "action",
+        "description": "Open the cart drawer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the cart drawer still shows the previously added cart item"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Admin sales page is protected when logged out",
+    "description": "Verifies an unauthenticated user cannot access the sales admin page and is redirected to admin login.",
+    "category": "Sales Admin",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/sales"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the admin login page is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC012",
+    "title": "Open a pack details page from the home preview",
+    "description": "Verifies a guest can open a pack’s details page from the home page preview and see the pack’s information and images.",
+    "category": "Home Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the pack listing section"
+      },
+      {
+        "type": "action",
+        "description": "Click a pack card to view its details"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify pack information is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify pack images are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC013",
+    "title": "Admin create-pack page is protected when logged out",
+    "description": "Verifies an unauthenticated user cannot access the create-pack page and is redirected to admin login.",
+    "category": "Create Pack",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/create-pack"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the admin login page is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC014",
+    "title": "Admin can log out and return to login",
+    "description": "Verifies that an authenticated admin can log out from the dashboard and is returned to the admin login page.",
+    "category": "Admin Dashboard",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Trigger logout from the dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the admin login page is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC015",
+    "title": "Admin can view sales and paginate through records",
+    "description": "Verifies an admin can open the sales page, view the sales table, and move between pages to see different records.",
+    "category": "Sales Admin",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to view sales"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the sales list to load"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the next page of sales results"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the sales table is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC016",
+    "title": "Admin can search sales and open a sale from the list",
+    "description": "Verifies an admin can use the sales search and open a sale from the results when available.",
+    "category": "Sales Admin",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to view sales"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the sales list to load"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid search term into the sales search field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sales search"
+      },
+      {
+        "type": "action",
+        "description": "Open the first sale from the results list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify sale details are displayed for the selected sale"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC017",
+    "title": "Prevent checkout initiation when no payment method is selected",
+    "description": "Verifies the checkout page blocks initiating payment until a payment method is selected and shows a visible validation error.",
+    "category": "Cart and Checkout",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /packs"
+      },
+      {
+        "type": "action",
+        "description": "Add a pack to the cart directly from the listing"
+      },
+      {
+        "type": "action",
+        "description": "Open the cart drawer"
+      },
+      {
+        "type": "action",
+        "description": "Proceed to checkout from the cart drawer"
+      },
+      {
+        "type": "action",
+        "description": "Submit the pay action without selecting a payment method"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a payment method validation error is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC018",
+    "title": "Admin login requires password",
+    "description": "Verifies that submitting the admin login form without a password shows a required-field validation error and does not log the user in.",
+    "category": "Admin Login",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a password required validation error is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC019",
+    "title": "Admin is required to provide a pack name",
+    "description": "Verifies the create-pack form blocks submission when the pack name is missing and shows a required-field validation error.",
+    "category": "Create Pack",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to create a pack"
+      },
+      {
+        "type": "action",
+        "description": "Leave the pack name field empty"
+      },
+      {
+        "type": "action",
+        "description": "Submit the create pack form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is visible indicating the pack name is required"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC020",
+    "title": "Admin sees an empty state for sales search with no matches",
+    "description": "Verifies searching sales with a term that yields no matches shows a clear empty state instead of stale results.",
+    "category": "Sales Admin",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to view sales"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the sales list to load"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"zzzz-no-matches-123\" into the sales search field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sales search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state is displayed indicating there are no matching sales"
+      }
+    ],
+    "priority": "Low"
+  }
+]

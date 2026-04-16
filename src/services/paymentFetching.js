@@ -21,7 +21,22 @@ export const createPaymentPreferenceFetching = async (items) =>
     axiosInstance.post("/api/payment/create-preference", { items })
   );
 
-  export const verifyPaymentFetching = async (paymentId) =>
+export const verifyPaymentFetching = async (paymentId) =>
   handleRequest(
     axiosInstance.get(`/api/payment/verify/${paymentId}`)
+  );
+
+export const createPayPalOrderFetching = async (items) =>
+  handleRequest(
+    axiosInstance.post("/api/payment/paypal/create-order", { items })
+  );
+
+export const capturePayPalOrderFetching = async (orderId) =>
+  handleRequest(
+    axiosInstance.post(`/api/payment/paypal/capture?orderId=${orderId}`)
+  );
+
+export const verifyPayPalPaymentFetching = async (orderId) =>
+  handleRequest(
+    axiosInstance.get(`/api/payment/paypal/verify?orderId=${orderId}`)
   );

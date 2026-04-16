@@ -34,12 +34,15 @@ export const AuthProvider = ({ children }) => {
 }
 
   const logout = async () => {
-
-    await adminLogoutFetching()
-
-    localStorage.removeItem("adminToken")
-    setToken(null)
-    setAdmin(null)
+    try {
+      await adminLogoutFetching()
+    } catch (e) {
+      console.error("logout error:", e)
+    } finally {
+      localStorage.removeItem("adminToken")
+      setToken(null)
+      setAdmin(null)
+    }
   }
 
   const checkAuth = async () => {

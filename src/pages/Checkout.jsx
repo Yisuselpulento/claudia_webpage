@@ -1,19 +1,46 @@
+import { useState } from "react"
 import { useCart } from "../context/CartContext"
-import { createPaymentPreferenceFetching } from "../services/paymentFetching"
+import { createPaymentPreferenceFetching, createPayPalOrderFetching } from "../services/paymentFetching"
 
 const Checkout = () => {
   const { cartItems, cartTotal } = useCart()
+  const [paymentMethod, setPaymentMethod] = useState("mercadopago")
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handlePayment = async () => {
+  const handleMercadoPago = async () => {
+    setIsLoading(true)
     const res = await createPaymentPreferenceFetching(cartItems)
+    setIsLoading(false)
 
     if (!res.success) {
       console.error(res.message)
       return
     }
 
-    // redirige al checkout de Mercado Pago
     window.location.href = res.init_point
+  }
+
+  const handlePayPal = async () => {
+    setIsLoading(true)
+    const res = await createPayPalOrderFetching(cartItems)
+    setIsLoading(false)
+
+    if (!res.success) {
+      console.error(res.message)
+      return
+    }
+
+    if (res.approveUrl) {
+      window.location.href = res.approveUrl
+    }
+  }
+
+  const handlePayment = async () => {
+    if (paymentMethod === "mercadopago") {
+      await handleMercadoPago()
+    } else {
+      await handlePayPal()
+    }
   }
 
   return (
@@ -26,7 +53,6 @@ const Checkout = () => {
             key={pack._id}
             className="flex items-center justify-between border-b pb-2 gap-4"
           >
-            {/* Imagen del pack */}
             {pack.coverImage?.url && (
               <img
                 src={pack.coverImage.url}
@@ -35,11 +61,10 @@ const Checkout = () => {
               />
             )}
 
-            {/* Título y precio */}
             <div className="flex-1 flex justify-between items-center">
               <p className="font-medium">{pack.title}</p>
               <p className="font-semibold">
-                ${pack.offer?.isActive ? pack.offer.price : pack.price}
+                ${pack.offer?.isActive ? pack.offer.price : pack.price} USD
               </p>
             </div>
           </div>
@@ -47,13 +72,41 @@ const Checkout = () => {
       </div>
 
       <div className="mt-6">
-        <p className="text-xl font-semibold mb-4">Total: ${cartTotal}</p>
+        <p className="text-xl font-semibold mb-4">Total: ${cartTotal} USD</p>
+
+        <div className="flex gap-4 mb-4">
+          <button
+            onClick={() => setPaymentMethod("mercadopago")}
+            className={`flex-1 py-2 px-4 rounded border ${
+              paymentMethod === "mercadopago"
+                ? "bg-primary text-white"
+                : "bg-white text-gray-700 border-gray-300"
+            }`}
+          >
+            MercadoPago
+          </button>
+          <button
+            onClick={() => setPaymentMethod("paypal")}
+            className={`flex-1 py-2 px-4 rounded border ${
+              paymentMethod === "paypal"
+                ? "bg-primary text-white"
+                : "bg-white text-gray-700 border-gray-300"
+            }`}
+          >
+            PayPal
+          </button>
+        </div>
 
         <button
           onClick={handlePayment}
-          className="w-full py-3 bg-primary text-white rounded hover:opacity-90 cursor-pointer"
+          disabled={isLoading}
+          className="w-full py-3 bg-primary text-white rounded hover:opacity-90 cursor-pointer disabled:opacity-50"
         >
-          Pagar con Mercado Pago
+          {isLoading
+            ? "Procesando..."
+            : paymentMethod === "mercadopago"
+            ? "Pagar con MercadoPago"
+            : "Pagar con PayPal"}
         </button>
       </div>
     </div>
