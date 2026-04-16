@@ -1,4 +1,5 @@
 import OnlineStatus from "./OnlineStatus"
+import { MdVerified } from "react-icons/md";
 
 const HomeHero = () => {
   return (
@@ -28,6 +29,7 @@ const HomeHero = () => {
         {/* Texto */}
         <div className="flex items-center gap-2">
           <h1 className="text-2xl font-bold">Isidora Blake</h1>
+           <MdVerified className="text-blue-500 w-5 h-5" />
           <OnlineStatus />
         </div>
         <a
