@@ -20,12 +20,20 @@ const HomeHero = () => {
         <img
           src="profile.png"
           alt="Profile"
-          className="w-40 h-40 sm:w-56 sm:h-56 rounded-full border-4 border-white shadow-lg object-cover mb-4"
+          className="w-40 h-40 sm:w-56 sm:h-56 rounded-full border-3 border-black shadow-lg object-cover mb-4"
         />
 
         {/* Texto */}
-        <h1 className="text-2xl font-bold">Hola, soy Clau</h1>
-        <p className=" text-lg mt-1">Bienvenido a mi página</p>
+        <h1 className="text-2xl font-bold">Hola, soy Isidora</h1>
+        <p className=" text-lg mt-1">immm 18 ☺️ just a highschool senior with a dumpyyy that loves riding horses and having fun💙 im super excited to start this because ive never really shown this side of me before!! here’s all of what you’ll get:
+
+💖access to the main wall
+💖solo content, 18+ films
+💖daily posts
+💖nude content available
+
+also feel free to dm me 🥰 honestly would be open to a deeper connection too…</p>
+        
       </div>
     </div>
   )
