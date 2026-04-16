@@ -8,7 +8,7 @@ export default function OnlineStatus() {
       </span>
 
       {/* Texto */}
-      <span className="text-sm text-green-500">En línea</span>
+      <span className="text-sm text-green-500 font-semibold tracking-wider">EN LíNEA</span>
     </div>
   );
 }

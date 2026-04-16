@@ -27,9 +27,17 @@ const HomeHero = () => {
 
         {/* Texto */}
         <div className="flex items-center gap-2">
-          <h1 className="text-2xl font-bold">Hola, soy Isidora</h1>
+          <h1 className="text-2xl font-bold">Isidora Blake</h1>
           <OnlineStatus />
         </div>
+        <a
+  href="https://www.instagram.com/isi.blake/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className=" hover:text-blue-500"
+>
+  @isi.blake
+</a>
 
         <div>
   <p className="text-lg mt-1">
