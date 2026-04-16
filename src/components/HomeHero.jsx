@@ -2,7 +2,7 @@ import OnlineStatus from "./OnlineStatus"
 
 const HomeHero = () => {
   return (
-    <div className="w-full md:h-[400px] h-[400px] relative">
+    <div className="w-full md:h-[300px] h-[300px] relative">
       {/* Banner */}
       <img
         src="movil_wallpaper.png"
