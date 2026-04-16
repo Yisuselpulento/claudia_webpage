@@ -32,7 +32,7 @@ const Navbar = () => {
                   border border-gray-400 dark:border-stone-500
                   md:p-2 p-1">
     {/* Logo */}
-    <Link to="/" className="text-xl font-bold px-3 py-2">Clauu</Link>
+    <Link to="/" className="text-xl font-bold px-3 py-2">Isidora</Link>
 
     {/* Links y botones */}
     <div className="flex md:gap-4 gap-3 items-center md:px-2 px-2 md:py-1">

@@ -27,9 +27,9 @@ const HomeHero = () => {
         />
 
         {/* Texto */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 ">
           <h1 className="text-2xl font-bold">Isidora Blake</h1>
-           <MdVerified className="text-blue-500 w-5 h-5" />
+           <MdVerified className="text-blue-500 w-4 h-4" />
           <OnlineStatus />
         </div>
         <a
@@ -42,18 +42,18 @@ const HomeHero = () => {
 </a>
 
         <div>
-  <p className="text-lg mt-1">
+  <p className=" mt-1 mb-3">
     Bienvenido a mi perfil. Si te gusta mi contenido, te invito a suscribirte!
   </p>
 
-  <p>
+  <p className="text-start mb-3">
     💖 Acceso al muro principal <br/>
     💖 Contenido en solitario, películas para mayores de 18 años<br/>
     💖 Publicaciones diarias <br/>
     💖 Contenido explícito disponible
   </p>
 
-  <p>
+  <p className="text-start mb-3">
     También puedes enviarme un mensaje directo 🥰 sinceramente, estaría abierta a una conexión más profunda también…
   </p>
 </div>
