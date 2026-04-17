@@ -234,7 +234,7 @@ const CreatePack = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-primary text-white px-6 py-4 rounded-xl font-medium hover:bg-primary/90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-primary text-white px-6 py-4 rounded-xl font-medium hover:bg-primary/90 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           {loading ? (
             <span className="flex items-center justify-center gap-2">

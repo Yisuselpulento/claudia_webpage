@@ -25,7 +25,7 @@ const AdminDashboard = () => {
         setStats(salesRes.stats)
       }
       if (packsRes?.success) {
-        setActivePacks(packsRes.packs.filter(p => p.isActive).length)
+        setActivePacks((packsRes.packs || []).filter(p => p.isActive).length)
       }
     }
     loadStats()

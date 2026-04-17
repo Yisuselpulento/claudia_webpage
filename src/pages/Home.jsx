@@ -43,13 +43,14 @@ const Home = () => {
         {loading ? (
           <p className="text-center">Cargando...</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 w-full max-w-5xl">
             {packs.map(pack => (
               <PackCard
                 key={pack._id}
                 pack={pack}
                 onDelete={handleDelete}
                 isAdmin={!!admin}
+                compact
               />
             ))}
           </div>
@@ -58,7 +59,7 @@ const Home = () => {
       <section className="flex justify-center py-10">
   <Link
     to="/packs"
-    className="px-6 py-3 bg-primary text-white rounded-full hover:opacity-90 transition"
+    className="px-6 py-3 bg-primary text-white rounded-full hover:opacity-90 transition cursor-pointer"
   >
     Ver toda la tienda
   </Link>

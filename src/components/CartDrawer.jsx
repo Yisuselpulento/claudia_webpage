@@ -1,11 +1,10 @@
 import { useCart } from "../context/CartContext"
 import ItemCard from "./Cards/ItemCard"
-import { FaTimes } from "react-icons/fa"
+import { FaTimes, FaShoppingBag, FaTrash } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 
 const CartDrawer = ({ onClose }) => {
-  const { cartItems, cartTotal } = useCart()
-
+  const { cartItems, cartTotal, clearCart } = useCart()
   const navigate = useNavigate()
 
   const handleCheckout = () => {
@@ -15,19 +14,35 @@ const CartDrawer = ({ onClose }) => {
 
   return (
     <>
-      <div className="fixed inset-0 bg-black/50 z-40" onClick={onClose} />
-      <div className="fixed dark:bg-stone-900 bg-white top-0 right-0 h-full md:w-96 w-full shadow-lg z-50 flex flex-col">
+      <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40" onClick={onClose} />
+      <div className="fixed bg-neutral-950 border-l border-white/10 top-0 right-0 h-full w-full md:w-[380px] shadow-2xl z-50 flex flex-col">
         
-        <div className="flex justify-between items-center p-3 border-b dark:border-stone-800 border-gray-200">
-          <h2 className="text-lg font-bold">Carrito</h2>
-          <button onClick={onClose}>
-            <FaTimes className="h-4 w-4 dark:text-gray-200 cursor-pointer hover:text-primary text-stone-800" />
+        <div className="flex items-center justify-between p-4 border-b border-white/10">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+              <FaShoppingBag className="w-4 h-4 text-primary" />
+            </div>
+            <div>
+              <h2 className="text-base font-semibold text-white">Carrito</h2>
+              <p className="text-gray-500 text-xs">{cartItems.length} items</p>
+            </div>
+          </div>
+          <button 
+            onClick={onClose}
+            className="p-2 text-gray-500 hover:text-white transition"
+          >
+            <FaTimes className="w-4 h-4" />
           </button>
         </div>
 
-        <div className="flex-1 p-2 flex flex-col gap-2 overflow-y-auto">
+        <div className="flex-1 p-3 flex flex-col gap-2 overflow-y-auto">
           {cartItems.length === 0 ? (
-            <p className="text-gray-500">No hay items en el carrito</p>
+            <div className="flex flex-col items-center justify-center h-full text-center">
+              <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-3">
+                <FaShoppingBag className="w-6 h-6 text-gray-600" />
+              </div>
+              <p className="text-gray-400 text-sm">Tu carrito está vacío</p>
+            </div>
           ) : (
             cartItems.map(item => (
               <ItemCard key={item._id} pack={item} />
@@ -35,15 +50,29 @@ const CartDrawer = ({ onClose }) => {
           )}
         </div>
 
-        <div className="p-4 border-t dark:border-stone-800 border-gray-200">
-          <p className="font-semibold mb-2">Total: ${cartTotal}</p>
+        {cartItems.length > 0 && (
+          <div className="p-4 border-t border-white/10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-gray-400">Total</span>
+              <span className="text-xl font-bold text-white">${cartTotal}</span>
+            </div>
 
-          <button 
-           onClick={handleCheckout}
-          className="w-full py-2 bg-primary text-white rounded hover:opacity-90 cursor-pointer">
-            Comprar
-          </button>
-        </div>
+            <button 
+              onClick={handleCheckout}
+              className="w-full py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-all cursor-pointer"
+            >
+              Ir a Pagar
+            </button>
+
+            <button 
+              onClick={() => clearCart()}
+              className="w-full py-2 text-gray-500 hover:text-red-400 transition flex items-center justify-center gap-2 text-xs cursor-pointer"
+            >
+              <FaTrash className="w-3 h-3" />
+              Vaciar
+            </button>
+          </div>
+        )}
 
       </div>
     </>

@@ -1,17 +1,28 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import { getAllSalesFetching, getSalesStatsFetching } from "../../services/salesFetching"
-import { FaShoppingCart, FaDollarSign, FaChartLine, FaArrowUp, FaArrowDown, FaChevronLeft, FaChevronRight } from "react-icons/fa"
+import { FaShoppingCart, FaDollarSign, FaChartLine, FaChevronLeft, FaChevronRight, FaArrowUp, FaArrowDown } from "react-icons/fa"
+
+const formatPrice = (sale) => {
+  const provider = sale.payment?.provider
+  const total = sale.total
+  
+  if (provider === "mercadopago") {
+    return `$${total.toLocaleString("es-CL")} CLP`
+  }
+  return `$${total} USD`
+}
 
 const SalesAdmin = () => {
   const [sales, setSales] = useState([])
   const [stats, setStats] = useState(null)
   const [loading, setLoading] = useState(true)
   const [selectedSale, setSelectedSale] = useState(null)
-  const [pagination, setPagination] = useState({ page: 1, limit: 10, totalPages: 1 })
+  const [pagination, setPagination] = useState({ page: 1, limit: 10, totalPages: 1, hasNextPage: false })
 
   useEffect(() => {
-    loadData(pagination.page)
-  }, [pagination.page])
+    loadData(1)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+  }, [])
 
   const loadData = async (page = 1) => {
     setLoading(true)
@@ -26,7 +37,8 @@ const SalesAdmin = () => {
         setPagination(prev => ({
           ...prev,
           page: salesRes.pagination.page,
-          totalPages: salesRes.pagination.totalPages
+          totalPages: salesRes.pagination.totalPages,
+          hasNextPage: salesRes.pagination.hasNextPage
         }))
       }
     }
@@ -39,6 +51,7 @@ const SalesAdmin = () => {
   const goToPage = (newPage) => {
     if (newPage >= 1 && newPage <= pagination.totalPages) {
       setPagination(prev => ({ ...prev, page: newPage }))
+      loadData(newPage)
     }
   }
 
@@ -55,14 +68,14 @@ const SalesAdmin = () => {
   const getProviderBadge = (provider) => {
     if (provider === "mercadopago") {
       return (
-        <span className="px-2 py-1 bg-blue-500/20 text-blue-400 text-xs font-medium rounded">
-          MercadoPago
+        <span className="px-2 py-0.5 bg-blue-500/20 text-blue-400 text-xs font-medium rounded">
+          MP
         </span>
       )
     }
     return (
-      <span className="px-2 py-1 bg-purple-500/20 text-purple-400 text-xs font-medium rounded">
-        PayPal
+      <span className="px-2 py-0.5 bg-purple-500/20 text-purple-400 text-xs font-medium rounded">
+        PP
       </span>
     )
   }
@@ -87,6 +100,8 @@ const SalesAdmin = () => {
     )
   }
 
+  const currentPage = pagination.page
+
   if (loading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
@@ -107,9 +122,9 @@ const SalesAdmin = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5 hover:border-primary/50 transition">
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-gray-400 text-sm font-medium">Ventas Totales</span>
+              <span className="text-gray-400 text-sm font-medium">Total Ventas</span>
               <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
                 <FaShoppingCart className="w-5 h-5 text-primary" />
               </div>
@@ -121,18 +136,18 @@ const SalesAdmin = () => {
             </div>
           </div>
 
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5 hover:border-primary/50 transition">
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-gray-400 text-sm font-medium">Ingresos Totales</span>
+              <span className="text-gray-400 text-sm font-medium">PayPal</span>
               <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
                 <FaDollarSign className="w-5 h-5 text-green-400" />
               </div>
             </div>
             <p className="text-3xl font-bold text-white">${stats?.totalRevenue || 0}</p>
-            <p className="text-gray-400 text-xs mt-1">USD (PayPal)</p>
+            <p className="text-gray-400 text-xs mt-1">USD</p>
           </div>
 
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5 hover:border-primary/50 transition">
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
             <div className="flex items-center justify-between mb-3">
               <span className="text-gray-400 text-sm font-medium">MercadoPago</span>
               <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
@@ -141,19 +156,6 @@ const SalesAdmin = () => {
             </div>
             <p className="text-3xl font-bold text-white">${stats?.totalRevenueCLP?.toLocaleString("es-CL") || 0}</p>
             <p className="text-gray-400 text-xs mt-1">CLP</p>
-          </div>
-
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5 hover:border-primary/50 transition">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-gray-400 text-sm font-medium">Ticket Promedio</span>
-              <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                <FaChartLine className="w-5 h-5 text-purple-400" />
-              </div>
-            </div>
-            <p className="text-3xl font-bold text-white">
-              ${stats?.totalSales ? (stats.totalRevenue / stats.totalSales).toFixed(2) : "0.00"}
-            </p>
-            <p className="text-gray-400 text-xs mt-1">Por venta</p>
           </div>
         </div>
 
@@ -180,22 +182,22 @@ const SalesAdmin = () => {
                   onClick={() => setSelectedSale(selectedSale?._id === sale._id ? null : sale)}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center">
-                        {getProviderBadge(sale.payment?.provider)}
-                      </div>
+                    <div className="flex items-center gap-3">
                       <div>
-                        <p className="font-medium text-white text-sm">
-                          {sale.packs?.length > 0 
-                            ? sale.packs.map(p => p.packId?.title || "Pack").join(", ")
-                            : "Sin packs"}
-                        </p>
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <span className="font-medium text-white text-sm">
+                            {sale.packs?.length > 0 
+                              ? sale.packs.map(p => p.packId?.title || "Pack").join(", ")
+                              : "Sin packs"}
+                          </span>
+                          <span className="shrink-0">{getProviderBadge(sale.payment?.provider)}</span>
+                        </div>
                         <p className="text-gray-500 text-xs">{formatDate(sale.createdAt)}</p>
                       </div>
                     </div>
                     <div className="text-right flex items-center gap-4">
                       <div>
-                        <p className="font-semibold text-white">${sale.total} USD</p>
+                        <p className="font-semibold text-white">{formatPrice(sale)}</p>
                         {getStatusBadge(sale.status)}
                       </div>
                     </div>
@@ -212,7 +214,7 @@ const SalesAdmin = () => {
                         </div>
                         <div>
                           <p className="text-gray-500 mb-1">Proveedor</p>
-                          <p className="font-medium text-white">{getProviderBadge(sale.payment?.provider)}</p>
+                          <p className="font-medium text-white">{sale.payment?.provider}</p>
                         </div>
                         <div>
                           <p className="text-gray-500 mb-1">Estado del Pago</p>
@@ -232,20 +234,20 @@ const SalesAdmin = () => {
         </div>
 
         {pagination.totalPages > 1 && (
-          <div className="px-5 py-4 border-t border-white/10 flex items-center justify-between">
+          <div className="flex items-center justify-between mt-6">
             <button
-              onClick={() => goToPage(pagination.page - 1)}
-              disabled={!pagination.hasPrevPage}
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
               className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <FaChevronLeft className="w-4 h-4" />
               Anterior
             </button>
             <span className="text-gray-400 text-sm">
-              Página {pagination.page} de {pagination.totalPages}
+              Página {currentPage} de {pagination.totalPages}
             </span>
             <button
-              onClick={() => goToPage(pagination.page + 1)}
+              onClick={() => goToPage(currentPage + 1)}
               disabled={!pagination.hasNextPage}
               className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
