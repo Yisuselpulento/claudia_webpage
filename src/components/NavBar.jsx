@@ -26,13 +26,13 @@ const Navbar = () => {
   return (
    <nav className="w-full fixed md:top-3 top-1 left-0  z-50 px-2 md:px-0">
   <div className="mx-auto flex justify-between items-center
-                  bg-white/20 dark:bg-stone-900/40
+                  bg-stone-900/80
                   backdrop-blur-md
                   shadow-md rounded-full max-w-7xl
-                  border border-gray-400 dark:border-stone-500
+                  border border-white/10
                   md:p-2 p-1">
     {/* Logo */}
-    <Link to="/" className="text-xl font-bold px-3 py-2">Isidora</Link>
+    <Link to="/" className="text-xl font-bold px-3 py-2 text-white">Isidora</Link>
 
     {/* Links y botones */}
     <div className="flex md:gap-4 gap-3 items-center md:px-2 px-2 md:py-1">
@@ -41,7 +41,7 @@ const Navbar = () => {
 
       {/* Carrito */}
       <button className="relative" onClick={() => setIsCartOpen(true)}>
-        <FaShoppingCart className="h-5 w-5 cursor-pointer hover:text-primary text-gray-800 dark:text-gray-200" />
+        <FaShoppingCart className="h-5 w-5 cursor-pointer hover:text-primary text-white" />
         {cartItems.length > 0 && (
           <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs px-1">
             {cartItems.length}

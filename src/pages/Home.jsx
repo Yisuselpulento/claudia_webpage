@@ -29,7 +29,7 @@ const Home = () => {
         <h2 className="text-2xl font-semibold mb-4">
           Descubre mis packs y ofertas
         </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-6">
+        <p className="text-gray-300 mb-6">
           Explora nuestra colección cuidadosamente seleccionada y encuentra lo que necesitas.
         </p>
 
@@ -37,7 +37,7 @@ const Home = () => {
       </div>
 
       {/* Sección de Packs */}
-      <section className="mx-auto px-4 py-8 dark:bg-black bg-gray-100 flex items-center flex-col">
+      <section className="mx-auto px-4 py-8 bg-black flex items-center flex-col">
         <h2 className="text-3xl font-semibold mb-10 text-center p-4">Alguna de mis sesiones</h2>
 
         {loading ? (
