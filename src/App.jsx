@@ -1,14 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import MainLayout from "./layouts/MainLayout"
+import AdminLayout from "./layouts/AdminLayout"
 import ProtectedRoute from "./components/ProtectedRoute"
 import PublicRoute from "./components/PublicRoute"
 
 import Home from "./pages/Home"
 import AdminLogin from "./pages/Admin/AdminLogin"
-import AdminDashboard from "./pages/Admin/AdminDashboard"
 import CreatePack from "./pages/Admin/CreatePack"
 import SalesAdmin from "./pages/Admin/SalesAdmin"
+import DashboardContent from "./pages/Admin/AdminDashboard"
 import PacksPage from "./pages/PacksPage"
 import PackIdPage from "./pages/PackIdPage"
 
@@ -42,32 +43,34 @@ function App() {
                 }
               />
 
-              <Route
-                path="/admin/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <AdminDashboard />
-                  </ProtectedRoute>
-                }
-              />
-
-              <Route
-                path="/admin/create-pack"
-                element={
-                  <ProtectedRoute>
-                    <CreatePack />
-                  </ProtectedRoute>
-                }
-              />
-
-              <Route
-                path="/admin/sales"
-                element={
-                  <ProtectedRoute>
-                    <SalesAdmin />
-                  </ProtectedRoute>
-                }
-              />
+              <Route element={<AdminLayout />}>
+                <Route
+                  path="/admin/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <div className="w-full">
+                        <DashboardContent />
+                      </div>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/create-pack"
+                  element={
+                    <ProtectedRoute>
+                      <CreatePack />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/sales"
+                  element={
+                    <ProtectedRoute>
+                      <SalesAdmin />
+                    </ProtectedRoute>
+                  }
+                />
+              </Route>
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>

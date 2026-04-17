@@ -4,7 +4,7 @@ import { verifyPaymentFetching, verifyPayPalPaymentFetching } from "../services/
 import { useCart } from "../context/CartContext";
 import toast from "react-hot-toast";
 
-const Success = () => {
+const SuccessContent = () => {
   const [searchParams] = useSearchParams();
   const paymentId = searchParams.get("payment_id");
   const orderId = searchParams.get("token") || searchParams.get("orderId") || searchParams.get("order_id");
@@ -84,10 +84,10 @@ const Success = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Verificando pago...</p>
+          <p className="text-gray-400">Verificando pago...</p>
         </div>
       </div>
     );
@@ -96,20 +96,20 @@ const Success = () => {
   return (
     <div className="max-w-2xl mx-auto p-6">
       <div className="text-center mb-8">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">¡Compra exitosa!</h1>
-        <p className="text-gray-600">Tus packs están listos para descargar</p>
+        <h1 className="text-3xl font-bold text-white mb-2">¡Compra exitosa!</h1>
+        <p className="text-gray-400">Tus packs están listos para descargar</p>
       </div>
 
       <div className="space-y-4">
         {packs.map((pack, index) => (
           <div
             key={pack._id}
-            className="border rounded-lg p-4 flex items-center gap-4 bg-white"
+            className="border border-white/10 rounded-lg p-4 flex items-center gap-4 bg-white/5"
           >
             {pack.coverImage?.url && (
               <img
@@ -119,7 +119,7 @@ const Success = () => {
               />
             )}
             <div className="flex-1">
-              <h3 className="font-semibold text-lg">{pack.title}</h3>
+              <h3 className="font-semibold text-lg text-white">{pack.title}</h3>
               <p className="text-gray-500 text-sm">
                 {pack.tags?.join(", ") || "Pack de imágenes"}
               </p>
@@ -137,8 +137,8 @@ const Success = () => {
         ))}
       </div>
 
-      <div className="mt-8 p-4 bg-amber-50 rounded-lg border border-amber-200">
-        <p className="text-sm text-amber-800">
+      <div className="mt-8 p-4 bg-amber-500/10 rounded-lg border border-amber-500/20">
+        <p className="text-sm text-amber-400">
           <strong>Nota:</strong> Los enlaces de descarga caducan en 1 hora. 
           Guarda tus archivos pronto. Si necesitas descargar más tarde, 
           visita esta página again con el mismo navegador.
@@ -148,4 +148,12 @@ const Success = () => {
   );
 };
 
-export default Success;
+const SuccessPage = () => {
+  return (
+    <div className="min-h-screen bg-black">
+      <SuccessContent />
+    </div>
+  )
+}
+
+export default SuccessPage;
