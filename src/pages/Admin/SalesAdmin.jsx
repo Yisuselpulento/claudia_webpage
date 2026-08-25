@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { getAllSalesFetching, getSalesStatsFetching } from "../../services/salesFetching"
-import { FaShoppingCart, FaDollarSign, FaChartLine, FaChevronLeft, FaChevronRight, FaArrowUp, FaArrowDown } from "react-icons/fa"
+import { FaShoppingCart, FaDollarSign, FaChartLine, FaChevronLeft, FaChevronRight, FaArrowUp, FaArrowDown, FaCrown, FaBoxOpen } from "react-icons/fa"
 
 const formatPrice = (sale) => {
   const provider = sale.payment?.provider
@@ -156,6 +156,56 @@ const SalesAdmin = () => {
             </div>
             <p className="text-3xl font-bold text-white">${stats?.totalRevenueCLP?.toLocaleString("es-CL") || 0}</p>
             <p className="text-gray-400 text-xs mt-1">CLP</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          {/* Top compradores */}
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
+            <div className="flex items-center gap-2 mb-4">
+              <FaCrown className="w-4 h-4 text-yellow-400" />
+              <h2 className="font-semibold text-white">Quién compra más</h2>
+            </div>
+            {(stats?.topBuyers?.length > 0) ? (
+              <ul className="flex flex-col gap-2">
+                {stats.topBuyers.map((b, i) => (
+                  <li key={i} className="flex items-center justify-between text-sm">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="w-5 text-gray-500">{i + 1}.</span>
+                      <div className="min-w-0">
+                        <p className="text-white truncate">{b.name || b._id}</p>
+                        {b.name && <p className="text-gray-500 text-xs truncate">{b._id}</p>}
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <p className="text-white font-medium">{b.purchases} compras</p>
+                      <p className="text-gray-500 text-xs">${b.totalSpent?.toLocaleString("es-CL")}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : <p className="text-gray-500 text-sm">Sin datos aún.</p>}
+          </div>
+
+          {/* Top packs */}
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
+            <div className="flex items-center gap-2 mb-4">
+              <FaBoxOpen className="w-4 h-4 text-primary" />
+              <h2 className="font-semibold text-white">Pack más vendido</h2>
+            </div>
+            {(stats?.topPacks?.length > 0) ? (
+              <ul className="flex flex-col gap-2">
+                {stats.topPacks.map((p, i) => (
+                  <li key={i} className="flex items-center justify-between text-sm">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="w-5 text-gray-500">{i + 1}.</span>
+                      <p className="text-white truncate">{p.title}</p>
+                    </div>
+                    <span className="text-primary font-medium shrink-0">{p.sold} vendidos</span>
+                  </li>
+                ))}
+              </ul>
+            ) : <p className="text-gray-500 text-sm">Sin datos aún.</p>}
           </div>
         </div>
 
